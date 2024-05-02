@@ -25,3 +25,4 @@ This app enables users to meticulously plan and assess character builds, while a
 - [Flutter](https://docs.flutter.dev/ "Flutter's Homepage") - Software Development Kit
 
 ## Acknowledgements
+This project was achieved collaboratively by myself and Davis.
