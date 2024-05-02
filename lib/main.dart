@@ -12,17 +12,20 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
   runApp(
-    MaterialApp(initialRoute: '/', routes: {
-      '/': (context) => home(),
-      '/main': (context) => MainScreen(),
-      '/stats': (context) => stats(),
-      '/weapons': (context) => weapons(),
-      'profile': (context) => profile(),
-      '/details': (context) => detailWeapons(),
-    },
+    MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => home(),
+        '/main': (context) => MainScreen(),
+        '/stats': (context) => stats(),
+        '/weapons': (context) => weapons(),
+        'profile': (context) => profile(),
+        '/details': (context) => detailWeapons(),
+      },
     ),
   );
 }
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -40,7 +43,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.black,
       bottomNavigationBar: BottomNavigationBar(
@@ -52,36 +54,24 @@ class _MainScreenState extends State<MainScreen> {
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.accessibility_sharp
-            ),
+            icon: Icon(Icons.accessibility_sharp),
             title: Text('HOME'),
-            activeIcon: Icon(
-                Icons.api
-            ),
+            activeIcon: Icon(Icons.api),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star
-            ),
+            icon: Icon(Icons.star),
             title: Text('test'),
-            activeIcon: Icon(
-                Icons.api
-            ),
+            activeIcon: Icon(Icons.api),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.graphic_eq_outlined
-            ),
+            icon: Icon(Icons.graphic_eq_outlined),
             title: Text('test'),
-            activeIcon: Icon(
-                Icons.api
-            ),
+            activeIcon: Icon(Icons.api),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person
-            ),
+            icon: Icon(Icons.person),
             title: Text('test'),
-            activeIcon: Icon(
-                Icons.api
-            ),
+            activeIcon: Icon(Icons.api),
           ),
         ],
         onTap: (index) {
@@ -93,8 +83,8 @@ class _MainScreenState extends State<MainScreen> {
       body: _widgetOptions.elementAt(_selectedIndex),
     );
   }
-
 }
+
 class home extends StatefulWidget {
   @override
   _FormState createState() => _FormState();
@@ -106,8 +96,9 @@ class _FormState extends State<home> {
   var _emailFieldController = TextEditingController();
   var _passwordFieldController = TextEditingController();
 
-  bool isValidEmail(String input){
-    final emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  bool isValidEmail(String input) {
+    final emailRegex = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return emailRegex.hasMatch(input);
   }
 
@@ -116,7 +107,8 @@ class _FormState extends State<home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange,
-        title: Text('Sign In'),centerTitle: true,
+        title: Text('Sign In'),
+        centerTitle: true,
       ),
       body: Form(
         key: _formKey,
@@ -131,7 +123,8 @@ class _FormState extends State<home> {
               ),
               keyboardType: TextInputType.emailAddress,
               controller: _emailFieldController,
-              validator: (val) => isValidEmail(val!) ? null : 'Invalid Email Address',
+              validator: (val) =>
+                  isValidEmail(val!) ? null : 'Invalid Email Address',
             ),
             TextFormField(
                 decoration: const InputDecoration(
@@ -142,90 +135,83 @@ class _FormState extends State<home> {
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
                 controller: _passwordFieldController,
-                validator: (val){
-                  if (val!.isEmpty){
+                validator: (val) {
+                  if (val!.isEmpty) {
                     return "Invalid Password";
                   }
-                  if (!RegExp(r"^(?=.*[A-Z])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*[A-Z])").hasMatch(val)) {
                     return "Password must contain one uppercase character";
                   }
-                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val)) {
                     return "Password must contain one lower character";
                   }
-                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val)) {
                     return "Password must contain one lower character";
                   }
-                  if (!RegExp(r"^.{6,}").hasMatch(val))
-                  {
+                  if (!RegExp(r"^.{6,}").hasMatch(val)) {
                     return "Password is atleast 6 characters";
                   }
-                  if (!RegExp(r"^(?=.*?[!@#\$&*~])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*?[!@#\$&*~])").hasMatch(val)) {
                     return "Password must contain one special character";
                   }
-                  if (val.contains( " " ))
-                  {
+                  if (val.contains(" ")) {
                     return "Password cannot contain whitespaces.";
                   }
-                }
-            ),
+                }),
             Container(
-                padding: EdgeInsets.only(left:40.0, top:20.0, right:40.0,),
+                padding: EdgeInsets.only(
+                  left: 40.0,
+                  top: 20.0,
+                  right: 40.0,
+                ),
                 child: RaisedButton(
                   child: Text("SIGN IN"),
-                  onPressed: (){
+                  onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       print("Email: ${_emailFieldController}");
                       print("Password: ${_passwordFieldController}");
 
-                      Alert(context:
-                      context,
+                      Alert(
+                        context: context,
                         title: "You signed in!",
                         desc: "Enjoy!",
                         buttons: [
                           DialogButton(
                             child: const Text(
                               "Enter the app",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
-                            onPressed: () => Navigator.pushNamed(context, '/main'),
-                            color: Colors.orange,)
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/main'),
+                            color: Colors.orange,
+                          )
                         ],
                       ).show();
-                    }
-                    else
-                    {
-                      Alert(context:
-                      context,
-                        title:  "Error",
+                    } else {
+                      Alert(
+                        context: context,
+                        title: "Error",
                         desc: "One of the fields has an error",
                         buttons: [
                           DialogButton(
                             child: const Text(
                               "OK",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                             onPressed: () => Navigator.pop(context),
-                            color: Colors.red,)
+                            color: Colors.red,
+                          )
                         ],
                       ).show();
                       print('Invalid Form');
                     }
                   },
-                )
-            ),
-
+                )),
             Container(
               height: 125,
             ),
-
             Container(
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(3.0)),
@@ -239,8 +225,8 @@ class _FormState extends State<home> {
                 highlightColor: Colors.transparent,
                 splashColor: Colors.white70,
                 child: const Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 42.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
                   child: Text(
                     "SignUp",
                     style: TextStyle(
@@ -250,17 +236,13 @@ class _FormState extends State<home> {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => signUp()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => signUp()));
                 },
               ),
             ),
-
           ],
         ),
-
       ),
     );
   }
@@ -280,8 +262,9 @@ class _signUp extends State<signUp> {
   var _passwordSignUp = TextEditingController();
   var _confirmPasswordSignUp = TextEditingController();
 
-  bool isValidEmail(String input){
-    final emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  bool isValidEmail(String input) {
+    final emailRegex = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return emailRegex.hasMatch(input);
   }
 
@@ -290,7 +273,8 @@ class _signUp extends State<signUp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orangeAccent,
-        title: Text('Create Account'),centerTitle: true,
+        title: Text('Create Account'),
+        centerTitle: true,
       ),
       body: Form(
         key: _formKey,
@@ -305,11 +289,10 @@ class _signUp extends State<signUp> {
               ),
               controller: _nameSignUp,
               validator: (val) {
-                if (val!.isEmpty){
+                if (val!.isEmpty) {
                   return "Invalid Name";
                 }
-                if (RegExp(r"^(?=.*?[!@%#\$&*~])").hasMatch(val))
-                {
+                if (RegExp(r"^(?=.*?[!@%#\$&*~])").hasMatch(val)) {
                   return "Name cannot contain special characters";
                 }
               },
@@ -322,7 +305,8 @@ class _signUp extends State<signUp> {
               ),
               keyboardType: TextInputType.emailAddress,
               controller: _emailSignUp,
-              validator: (val) => isValidEmail(val!) ? null : 'Invalid Email Address',
+              validator: (val) =>
+                  isValidEmail(val!) ? null : 'Invalid Email Address',
             ),
             TextFormField(
                 decoration: const InputDecoration(
@@ -332,21 +316,17 @@ class _signUp extends State<signUp> {
                 ),
                 keyboardType: TextInputType.phone,
                 controller: _phoneSignUp,
-                validator: (val){
-                  if (val!.isEmpty){
+                validator: (val) {
+                  if (val!.isEmpty) {
                     return "Enter Phone number";
                   }
-                  if (val.length < 10 || val.length > 10)
-                  {
+                  if (val.length < 10 || val.length > 10) {
                     return "Enter a 10 digits number";
                   }
-                  if (!RegExp(r"(^(?:[+0]9)?[0-9]{10}$)").hasMatch(val))
-                  {
+                  if (!RegExp(r"(^(?:[+0]9)?[0-9]{10}$)").hasMatch(val)) {
                     return "Enter numbers only";
                   }
-                }
-
-            ),
+                }),
             TextFormField(
                 decoration: const InputDecoration(
                   icon: Icon(Icons.lock),
@@ -356,35 +336,61 @@ class _signUp extends State<signUp> {
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
                 controller: _passwordSignUp,
-                validator: (val){
-                  if (val!.isEmpty){
+                validator: (val) {
+                  if (val!.isEmpty) {
                     return "Invalid Password";
                   }
-                  if (!RegExp(r"^(?=.*[A-Z])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*[A-Z])").hasMatch(val)) {
                     return "Password must contain one uppercase character";
                   }
-                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val)) {
                     return "Password must contain one lower character";
                   }
-                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*[a-z])").hasMatch(val)) {
                     return "Password must contain one lower character";
                   }
-                  if (!RegExp(r"^.{6,}").hasMatch(val))
-                  {
+                  if (!RegExp(r"^.{6,}").hasMatch(val)) {
                     return "Password is atleast 6 characters";
                   }
-                  if (!RegExp(r"^(?=.*?[!@#\$&*~])").hasMatch(val))
-                  {
+                  if (!RegExp(r"^(?=.*?[!@#\$&*~])").hasMatch(val)) {
                     return "Password must contain one special character";
                   }
-                  if (val.contains( " " ))
-                  {
+                  if (val.contains(" ")) {
                     return "Password cannot contain whitespaces.";
                   }
-                }
+                }),
+            Padding(
+              padding: EdgeInsets.only(left: 40.0, top: 5),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    '• Password must contain the following:',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(
+                    '• Password length must be greater than 6',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  Text(
+                    '• Contains at least one uppercase letter',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  Text(
+                    '• Contains at least one lowercase letter',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  Text(
+                    '• Contains at least one digit',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  Text(
+                    '• Contains at least one special character',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ],
+              ),
             ),
             TextFormField(
                 decoration: const InputDecoration(
@@ -395,21 +401,23 @@ class _signUp extends State<signUp> {
                 obscureText: true,
                 keyboardType: TextInputType.visiblePassword,
                 controller: _confirmPasswordSignUp,
-                validator: (val){
-                  if (val!.isEmpty){
+                validator: (val) {
+                  if (val!.isEmpty) {
                     return "Invalid Password";
                   }
-                  if (_passwordSignUp.text != _confirmPasswordSignUp.text)
-                  {
+                  if (_passwordSignUp.text != _confirmPasswordSignUp.text) {
                     return "Password do not match";
                   }
-                }
-            ),
+                }),
             Container(
-                padding: EdgeInsets.only(left:40.0, top:20.0, right:40.0,),
+                padding: EdgeInsets.only(
+                  left: 40.0,
+                  top: 20.0,
+                  right: 40.0,
+                ),
                 child: RaisedButton(
                   child: Text("SIGN UP"),
-                  onPressed: (){
+                  onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       print("Name: ${_nameSignUp}");
                       print("Email: ${_emailSignUp}");
@@ -417,61 +425,57 @@ class _signUp extends State<signUp> {
                       print("Password: ${_passwordSignUp}");
                       print("PasswordConfirm: ${_confirmPasswordSignUp}");
 
-                      Alert(context:
-                      context,
+                      Alert(
+                        context: context,
                         title: "You Created an acccount",
                         desc: "You may now sign in!",
                         buttons: [
                           DialogButton(
                             child: const Text(
                               "Enter the app",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
-                            onPressed: () => Navigator.pushNamed(context, '/main'),
-                            color: Colors.orange,)
+                            onPressed: () =>
+                                Navigator.pushNamed(context, '/main'),
+                            color: Colors.orange,
+                          )
                         ],
                       ).show();
-                    }
-                    else
-                    {
-                      Alert(context:
-                      context,
-                        title:  "Error",
+                    } else {
+                      Alert(
+                        context: context,
+                        title: "Error",
                         desc: "One of the fields has an error",
                         buttons: [
                           DialogButton(
                             child: const Text(
                               "OK",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                             onPressed: () => Navigator.pop(context),
-                            color: Colors.red,)
+                            color: Colors.red,
+                          )
                         ],
                       ).show();
                       print('Invalid Form');
                     }
                   },
-                )
-            ),
+                )),
           ],
         ),
-
       ),
     );
   }
 }
 
-
-class weapons extends StatefulWidget{
+class weapons extends StatefulWidget {
   @override
   State<weapons> createState() => _weaponsState();
 }
 
-class _weaponsState extends State<weapons>{
+class _weaponsState extends State<weapons> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -482,60 +486,60 @@ class _weaponsState extends State<weapons>{
       ),
       body: Center(
           child: FutureBuilder<List<Weapons>>(
-            future: getWeapon(),
-            builder: (context, snapshot){
-              if (snapshot.hasData){
-                var Weapons = snapshot.data;
-                return ListView.builder(
-                    itemCount: Weapons?.length,
-                    itemBuilder: (context, ind){
-                      var weaponGroup = Weapons![ind];
-                      var one = weaponGroup.getName();
-                      var two = weaponGroup.getCatagory();
-                      var idValue = weaponGroup.getId().toString();
-                      return ListTile(
-                          title: Text(one!),
-                          subtitle: Text(two!),textColor: Colors.white,
-                          leading: CircleAvatar(
-                            child: Text("$idValue"),
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.orangeAccent,),
-                          onTap: () async{
-                            Navigator.pushNamed(context, '/details', arguments: weaponGroup);
-                          }
-                      );
-                    }
-                );
-              }
-              else if(snapshot.hasError){
-                return Text("${snapshot.error}");
-              }
-              return CircularProgressIndicator();
-            },
-          )
-      ),
+        future: getWeapon(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var Weapons = snapshot.data;
+            return ListView.builder(
+                itemCount: Weapons?.length,
+                itemBuilder: (context, ind) {
+                  var weaponGroup = Weapons![ind];
+                  var one = weaponGroup.getName();
+                  var two = weaponGroup.getCatagory();
+                  var idValue = weaponGroup.getId().toString();
+                  return ListTile(
+                      title: Text(one!),
+                      subtitle: Text(two!),
+                      textColor: Colors.white,
+                      leading: CircleAvatar(
+                        child: Text("$idValue"),
+                        foregroundColor: Colors.white,
+                        backgroundColor: Colors.orangeAccent,
+                      ),
+                      onTap: () async {
+                        Navigator.pushNamed(context, '/details',
+                            arguments: weaponGroup);
+                      });
+                });
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          return CircularProgressIndicator();
+        },
+      )),
       backgroundColor: Colors.black,
     );
   }
 }
 
 Future<List<Weapons>> getWeapon() async {
-  var url = 'https://raw.githubusercontent.com/BoredTourist/EldenBlingAPI/main/APIBest';
+  var url =
+      'https://raw.githubusercontent.com/BoredTourist/EldenBlingAPI/main/APIBest';
   var response = await http.get(Uri.parse(url));
-  if (response.statusCode == 200){
+  if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
     return jsonResponse.map<Weapons>((m) => Weapons.fromJson(m)).toList();
-  }
-  else{
+  } else {
     throw Exception("Failed to fetch data");
   }
 }
 
-class detailWeapons extends StatefulWidget{
+class detailWeapons extends StatefulWidget {
   @override
   State<detailWeapons> createState() => _detailState();
 }
-class _detailState extends State<detailWeapons>{
+
+class _detailState extends State<detailWeapons> {
   late Weapons weaponDetails;
   @override
   Widget build(BuildContext context) {
@@ -564,35 +568,73 @@ class _detailState extends State<detailWeapons>{
           Container(
             child: Image.network("$imageLink"),
           ),
-          Container(
-              child:Text("")
-          ),
-          Column(children: [
-            Container(child: Text("$description",style: TextStyle(color: Colors.white,fontSize: 17),textAlign: TextAlign.center,),alignment: Alignment.center,),
-            Container(child: Text("\nCatagory: $category",style: TextStyle(color: Colors.white,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("Skill: $skill ",style: TextStyle(color: Colors.white,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("\nPhysical: $phy ",style: TextStyle(color: Colors.white,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("Magic: $mag ",style: TextStyle(color: Colors.cyan,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("Fire: $fire ",style: TextStyle(color: Colors.deepOrange,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("Light: $light ",style: TextStyle(color: Colors.yellow,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("Holy: $holy ",style: TextStyle(color: Colors.deepOrangeAccent,fontSize: 17)),alignment: Alignment.center,),
-            Container(child: Text("Crit: $Crit ",style: TextStyle(color: Colors.red,fontSize: 17)),alignment: Alignment.center,),
-          ],
+          Container(child: Text("")),
+          Column(
+            children: [
+              Container(
+                child: Text(
+                  "$description",
+                  style: TextStyle(color: Colors.white, fontSize: 17),
+                  textAlign: TextAlign.center,
+                ),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("\nCatagory: $category",
+                    style: TextStyle(color: Colors.white, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("Skill: $skill ",
+                    style: TextStyle(color: Colors.white, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("\nPhysical: $phy ",
+                    style: TextStyle(color: Colors.white, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("Magic: $mag ",
+                    style: TextStyle(color: Colors.cyan, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("Fire: $fire ",
+                    style: TextStyle(color: Colors.deepOrange, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("Light: $light ",
+                    style: TextStyle(color: Colors.yellow, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("Holy: $holy ",
+                    style: TextStyle(
+                        color: Colors.deepOrangeAccent, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text("Crit: $Crit ",
+                    style: TextStyle(color: Colors.red, fontSize: 17)),
+                alignment: Alignment.center,
+              ),
+            ],
           ),
         ],
       ),
       backgroundColor: Colors.black,
-
     );
   }
 }
 
 class Weapons {
-  late int?  _id;
-  late String?  _name;
-  late String?  _image;
-  late String?  _description;
-  late String?  _category;
+  late int? _id;
+  late String? _name;
+  late String? _image;
+  late String? _description;
+  late String? _category;
   late String? _skill;
 
   late String? _phy;
@@ -602,23 +644,20 @@ class Weapons {
   late String? _holy;
   late String? _crit;
 
-
   Weapons(
-      int?    id,
-      String? n,
-      String? im,
-      String? d,
-      String? c,
-      String? s,
-
-      String? phy,
-      String? mag,
-      String? fire,
-      String? ligt,
-      String? holy,
-      String? crit,
-
-      ){
+    int? id,
+    String? n,
+    String? im,
+    String? d,
+    String? c,
+    String? s,
+    String? phy,
+    String? mag,
+    String? fire,
+    String? ligt,
+    String? holy,
+    String? crit,
+  ) {
     _id = id;
     _name = n;
     _image = im;
@@ -634,7 +673,7 @@ class Weapons {
     _crit = crit;
   }
 
-  factory Weapons.fromJson(Map<String, dynamic> json){
+  factory Weapons.fromJson(Map<String, dynamic> json) {
     return Weapons(
       json['id'],
       json['name'],
@@ -642,7 +681,6 @@ class Weapons {
       json['description'],
       json['category'],
       json['Skill'],
-
       json['attack']["Phy"],
       json['attack']["Mag"],
       json['attack']["Fire"],
@@ -664,5 +702,4 @@ class Weapons {
   String? getLigt() => _ligt;
   String? getHoly() => _holy;
   String? getCrit() => _crit;
-
 }
