@@ -10,8 +10,9 @@
 ## Overview
 This app enables users to meticulously plan and assess character builds, while also providing access to comprehensive weapon statistics. With its intuitive interface, users can optimize their in-game performance by gaining valuable insights into their character's potential
 
+
 ## Demo
-![](https://github.com/Character-Planner-Mobile-App/gifs/Sign_in.gif)
+![Sign_in](https://github.com/HajarFarag/Character-Planner-Mobile-App/assets/103531166/a25508ed-c269-4025-938d-f48eba4f96e3)
 
 ## Features
 - Users can create estimated character builds.
