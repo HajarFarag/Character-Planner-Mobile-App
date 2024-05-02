@@ -13,7 +13,15 @@ This app enables users to meticulously plan and assess character builds, while a
 ## Demo
 
 ## Features
+- Users can create estimated character builds.
+- Select from nine class options affecting character stats.
+- Manually adjust stats with rune cost estimation.
+- Save and retrieve character builds.
+- Users can view weapons from Elden Ring in detail.
 
 ## Technologies Used
+- [Visual Studio Code](https://code.visualstudio.com "Visual Studio Code's Homepage") - IDE
+- [Dart](https://dart.dev/ "Dart's Homepage") - Programming language
+- [Flutter](https://docs.flutter.dev/ "Flutter's Homepage") - Software Development Kit
 
 ## Acknowledgements
