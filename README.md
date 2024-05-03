@@ -15,7 +15,7 @@ This app enables users to meticulously plan and assess character builds, while a
 ### Sign in 
 <br />
 <img src="https://github.com/HajarFarag/Character-Planner-Mobile-App/assets/103531166/a25508ed-c269-4025-938d-f48eba4f96e3" width="450" height="800" />
-<br />
+
 ### Character Planning 
 <br />
 <img src="https://github.com/HajarFarag/Character-Planner-Mobile-App/assets/103531166/5d6d3727-41b7-48cb-9cf2-eff032e19826" width="450" height="800" />
